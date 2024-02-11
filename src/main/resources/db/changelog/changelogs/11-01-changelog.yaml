@@ -1,0 +1,98 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1707610091298-1
+      author: user (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_action
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: created_date
+                  type: DATETIME
+              - column:
+                  name: last_modified_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: description
+                  type: oid
+              - column:
+                  name: visibility
+                  type: VARCHAR(255)
+            tableName: action
+  - changeSet:
+      id: 1707610091298-2
+      author: user (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_variable
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: created_date
+                  type: DATETIME
+              - column:
+                  name: last_modified_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: default_value
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: description
+                  type: oid
+              - column:
+                  name: modifier
+                  type: oid
+              - column:
+                  name: action_id
+                  type: BIGINT
+            tableName: variable
+  - changeSet:
+      id: 1707610091298-3
+      author: user (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: name
+            constraintName: uc_action_name
+            tableName: action
+  - changeSet:
+      id: 1707610091298-4
+      author: user (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: action_id
+            baseTableName: variable
+            constraintName: FK_VARIABLE_ON_ACTION
+            referencedColumnNames: id
+            referencedTableName: action
+
