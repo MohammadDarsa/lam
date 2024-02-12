@@ -26,6 +26,6 @@ public class Action extends Auditable {
     @Column(name = "visibility")
     private Visibility visibility;
 
-    @OneToMany(mappedBy = "action", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "action", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Set<Variable> variables = new LinkedHashSet<>();
 }
