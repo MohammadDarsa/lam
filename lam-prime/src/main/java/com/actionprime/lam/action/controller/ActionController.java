@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller for managing actions.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/action")
@@ -21,6 +24,11 @@ public class ActionController {
 
     private final ActionService actionService;
 
+    /**
+     * GET /api/v1/action : get all actions.
+     *
+     * @return the list of actions
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.FOUND)
     @Operation(summary = "Get all actions", description = "returns a list of all the actions available in the database")
@@ -31,6 +39,12 @@ public class ActionController {
         return actionService.getAllActions();
     }
 
+    /**
+     * GET /api/v1/action/{id} : get an action by id.
+     *
+     * @param id the id of the action to retrieve
+     * @return the action with the given id or 404 if not found
+     */
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     @Operation(summary = "Get action by id", description = "returns an action with the id provided from the database if found")
@@ -42,6 +56,12 @@ public class ActionController {
         return actionService.getActionById(id);
     }
 
+    /**
+     * POST /api/v1/action/name : get an action by name.
+     *
+     * @param request the request containing the name of the action to retrieve
+     * @return the action with the given name or 404 if not found
+     */
     @PostMapping("/name")
     @ResponseStatus(HttpStatus.FOUND)
     @Operation(summary = "Get action by name", description = "returns an action with the name provided from the database if found")
@@ -53,6 +73,12 @@ public class ActionController {
         return actionService.getActionByName(request.name());
     }
 
+    /**
+     * POST /api/v1/action : create an action.
+     *
+     * @param actionDto the action to create
+     * @return the created action
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "create action", description = "creates an action in the database")
@@ -64,6 +90,12 @@ public class ActionController {
         return actionService.createAction(actionDto);
     }
 
+    /**
+     * PUT /api/v1/action : update an action.
+     *
+     * @param actionDto the action to update
+     * @return the updated action
+     */
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "update action", description = "updates an action in the database, the id must be provided")
@@ -75,6 +107,11 @@ public class ActionController {
         return actionService.updateAction(actionDto);
     }
 
+    /**
+     * DELETE /api/v1/action/{id} : delete an action.
+     *
+     * @param id the id of the action to delete
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "delete action", description = "deletes an action in the database by providing its id")
