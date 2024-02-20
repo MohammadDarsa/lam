@@ -41,3 +41,8 @@ out/
 
 ### logs ###
 **/logs/
+
+### http environment ###
+**/http-client.private.env.json
+**/secrets.properties
+**/secrets-test.properties
