@@ -1,4 +1,5 @@
 rootProject.name = 'lam'
 include 'lam-prime'
 include 'logging-prime'
+include 'llm-client-prime'
 
